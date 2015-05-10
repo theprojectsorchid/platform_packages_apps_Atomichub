@@ -75,6 +75,11 @@
         android:min="3"
         android:defaultValue="3"/>
 
+    <com.palladium.support.preferences.SecureSettingSwitchPreference
+        android:key="power_menu_hide_on_secure"
+        android:title="@string/power_menu_hide_on_secure_title"
+        android:summary="@string/power_menu_hide_on_secure_summary"
+        android:defaultValue="false" />
     </PreferenceCategory>
 
     <PreferenceCategory
