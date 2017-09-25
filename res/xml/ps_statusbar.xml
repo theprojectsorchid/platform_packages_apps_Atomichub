@@ -23,6 +23,12 @@
 
         android:title="@string/notifications_general_category_title">
 
+        <!-- Heads up -->
+        <Preference
+            android:title="@string/heads_up_notifications"
+            android:summary="@string/heads_up_notifications_summary"
+            android:fragment="com.palladium.atomichub.fragments.HeadsUpSettings" />
+
        <com.palladium.support.preferences.SecureSettingSwitchPreference
            android:key="adb_notify"
            android:title="@string/adb_notify"
