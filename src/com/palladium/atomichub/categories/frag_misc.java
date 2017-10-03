@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.android.internal.widget.LockPatternUtils;
 import com.palladium.atomichub.utils.PDUtils;
+import androidx.preference.*;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 
@@ -44,12 +45,14 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
     private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
     private static final String FINGERPRINT_ERROR_VIB = "fingerprint_error_vib";
     private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
+    private static final String RINGTONE_FOCUS_MODE = "ringtone_focus_mode";
 
     private SwitchPreference mFingerprintErrorVib;
     private SystemSettingSwitchPreference mFingerprintUnlock;
     private ListPreference mScrollingCachePref;
     private FingerprintManager mFingerprintManager;
     private SwitchPreference mFingerprintVib;
+    private ListPreference mHeadsetRingtoneFocus;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,6 +118,13 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
             prefScreen.removePreference(incallVibCategory);
         }
 
+        mHeadsetRingtoneFocus = (ListPreference) findPreference(RINGTONE_FOCUS_MODE);
+        int mHeadsetRingtoneFocusValue = Settings.Global.getInt(resolver,
+                Settings.Global.RINGTONE_FOCUS_MODE, 0);
+        mHeadsetRingtoneFocus.setValue(Integer.toString(mHeadsetRingtoneFocusValue));
+        mHeadsetRingtoneFocus.setSummary(mHeadsetRingtoneFocus.getEntry());
+        mHeadsetRingtoneFocus.setOnPreferenceChangeListener(this);
+
     }
     @Override
     public int getMetricsCategory() {
@@ -151,6 +161,14 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.FINGERPRINT_ERROR_VIB, value ? 1 : 0);
+        } else if (preference == mHeadsetRingtoneFocus) {
+            int mHeadsetRingtoneFocusValue = Integer.valueOf((String) newValue);
+            int index = mHeadsetRingtoneFocus.findIndexOfValue((String) newValue);
+            mHeadsetRingtoneFocus.setSummary(
+                    mHeadsetRingtoneFocus.getEntries()[index]);
+            Settings.Global.putInt(getContentResolver(), Settings.Global.RINGTONE_FOCUS_MODE,
+                    mHeadsetRingtoneFocusValue);
+            return true;
         }
         return false;
     }
