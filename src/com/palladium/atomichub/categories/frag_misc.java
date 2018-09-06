@@ -30,6 +30,7 @@ import android.provider.SearchIndexableResource;
 import java.util.ArrayList;
 import java.util.List;
 import com.android.internal.widget.LockPatternUtils;
+import com.palladium.atomichub.utils.PDUtils;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 
@@ -42,6 +43,7 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
     private static final String FP_KEYSTORE = "fp_unlock_keystore";
     private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
     private static final String FINGERPRINT_ERROR_VIB = "fingerprint_error_vib";
+    private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
 
     private SwitchPreference mFingerprintErrorVib;
     private SystemSettingSwitchPreference mFingerprintUnlock;
@@ -106,6 +108,11 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
            }
         } else {
             prefScreen.removePreference(mFingerprintErrorVib);
+        }
+
+        PreferenceCategory incallVibCategory = (PreferenceCategory) findPreference(INCALL_VIB_OPTIONS);
+        if (!PDUtils.isVoiceCapable(getActivity())) {
+            prefScreen.removePreference(incallVibCategory);
         }
 
     }
