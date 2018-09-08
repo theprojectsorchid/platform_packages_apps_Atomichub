@@ -10,6 +10,17 @@
 
     <PreferenceCategory
 
+        android:title="@string/status_bar_items_category_title">
+
+        <Preference
+            android:title="@string/status_bar_clock_date_title"
+            android:summary="@string/status_bar_clock_date_summary"
+            android:fragment="com.palladium.atomichub.fragments.StatusbarClockDateSettings" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+
         android:title="@string/quick_settings_general_category_title">
 
         <com.palladium.support.preferences.SystemSettingSwitchPreference
