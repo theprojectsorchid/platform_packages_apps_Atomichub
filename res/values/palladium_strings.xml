@@ -53,6 +53,8 @@
     <string name="button">Buttons</string>
     <string name="team">Team</string>
     <string name="powermenu_title">Power Menu</string>
+    <string name="gesture">Gesture Settings</string>
+    <string name="default_string">Default</string>
 
     <!-- Lock screen info category -->
     <string name="lock_screen_info_category_title">Lock screen</string>
@@ -208,5 +210,12 @@
     <!-- Clock style -->
     <string name="clock_style_title">Clock style</string> 
     <string name="clock_style_summary">Customize lockscreen clock</string> 
+
+    <!-- QS Themes Category -->
+    <string name="qs_themes_category_title">QS themes</string>
+
+    <!-- AOSP Gestures -->
+    <string name="aosp_gesture_preference">System settings</string>
+    <string name="aosp_gesture_summary">Stock gestures included with AOSP</string>
 
 </resources>
