@@ -141,4 +141,11 @@
     <string name="clock_date_right">Right of time</string>
     <string name="clock_date_left">Left of time</string>
 
+    <!-- Navigation bar category -->
+    <string name="nav_bar_category_title">Navigation bar</string>
+
+    <!-- Navbar tuner -->
+    <string name="navbar_tuner_title">Navbar tuner</string>
+    <string name="navbar_tuner_summary">Customize navbar tuner</string>
+
 </resources>
