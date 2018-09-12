@@ -4,12 +4,16 @@ import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.content.Context;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
+import androidx.preference.*;
+import android.provider.Settings;
 import android.content.om.IOverlayManager;
 import android.content.om.OverlayInfo;
+import android.provider.Settings;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
@@ -19,7 +23,10 @@ import com.palladium.atomichub.*;
 import com.android.internal.util.hwkeys.ActionConstants;
 import com.android.internal.util.hwkeys.ActionUtils;
 import com.palladium.atomichub.preferences.ActionFragment;
+import com.palladium.support.preferences.CustomSeekBarPreference;
+import com.android.internal.logging.nano.MetricsProto;
 import android.app.ActionBar;
+
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.SearchIndexable;
 import android.provider.SearchIndexableResource;
@@ -34,6 +41,11 @@ public class frag_keys extends ActionFragment implements OnPreferenceChangeListe
     private IOverlayManager mOverlayService;
 
     private static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+
+    private static final String KEY_BUTTON_BRIGHTNESS = "button_brightness";
+    private static final String KEY_BUTTON_BRIGHTNESS_SW = "button_brightness_sw";
+    private static final String KEY_BACKLIGHT_TIMEOUT = "backlight_timeout";
+
     private static final String HWKEY_DISABLE = "hardware_keys_disable";
 
     // category keys
@@ -58,6 +70,9 @@ public class frag_keys extends ActionFragment implements OnPreferenceChangeListe
 
     private ListPreference mVolumeKeyCursorControl;
     private SwitchPreference mHwKeyDisable;
+    private ListPreference mBacklightTimeout;
+    private CustomSeekBarPreference mButtonBrightness;
+    private SwitchPreference mButtonBrightness_sw;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +81,7 @@ public class frag_keys extends ActionFragment implements OnPreferenceChangeListe
         mOverlayService = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
         //Feature Additon!
-
+        final PreferenceScreen prefScreen = getPreferenceScreen();
         // volume key cursor control
         mVolumeKeyCursorControl = (ListPreference) findPreference(VOLUME_KEY_CURSOR_CONTROL);
         if (mVolumeKeyCursorControl != null) {
@@ -90,6 +105,43 @@ public class frag_keys extends ActionFragment implements OnPreferenceChangeListe
                     UserHandle.USER_CURRENT);
             mHwKeyDisable.setChecked(keysDisabled != 0);
             mHwKeyDisable.setOnPreferenceChangeListener(this);
+
+            final boolean variableBrightness = getResources().getBoolean(
+                    com.android.internal.R.bool.config_deviceHasVariableButtonBrightness);
+
+            mBacklightTimeout =
+                    (ListPreference) findPreference(KEY_BACKLIGHT_TIMEOUT);
+
+            mButtonBrightness =
+                    (CustomSeekBarPreference) findPreference(KEY_BUTTON_BRIGHTNESS);
+
+            mButtonBrightness_sw =
+                    (SwitchPreference) findPreference(KEY_BUTTON_BRIGHTNESS_SW);
+
+                if (mBacklightTimeout != null) {
+                    mBacklightTimeout.setOnPreferenceChangeListener(this);
+                    int BacklightTimeout = Settings.System.getInt(getContentResolver(),
+                            Settings.System.BUTTON_BACKLIGHT_TIMEOUT, 1000);
+                    mBacklightTimeout.setValue(Integer.toString(BacklightTimeout));
+                    mBacklightTimeout.setSummary(mBacklightTimeout.getEntry());
+                }
+
+                if (variableBrightness) {
+                    hwkeyCat.removePreference(mButtonBrightness_sw);
+                    if (mButtonBrightness != null) {
+                        int ButtonBrightness = Settings.System.getInt(getContentResolver(),
+                                Settings.System.BUTTON_BRIGHTNESS, 120);
+                        mButtonBrightness.setValue(ButtonBrightness / 1);
+                        mButtonBrightness.setOnPreferenceChangeListener(this);
+                    }
+                } else {
+                    hwkeyCat.removePreference(mButtonBrightness);
+                    if (mButtonBrightness_sw != null) {
+                        mButtonBrightness_sw.setChecked((Settings.System.getInt(getContentResolver(),
+                                Settings.System.BUTTON_BRIGHTNESS, 1) == 1));
+                        mButtonBrightness_sw.setOnPreferenceChangeListener(this);
+                    }
+                }
         } else {
             prefScreen.removePreference(hwkeyCat);
         }
@@ -169,6 +221,26 @@ public class frag_keys extends ActionFragment implements OnPreferenceChangeListe
                     .findIndexOfValue(volumeKeyCursorControl);
             mVolumeKeyCursorControl
                     .setSummary(mVolumeKeyCursorControl.getEntries()[volumeKeyCursorControlIndex]);
+            return true;
+        } else if (preference == mBacklightTimeout) {
+            String BacklightTimeout = (String) newValue;
+            int BacklightTimeoutValue = Integer.parseInt(BacklightTimeout);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.BUTTON_BACKLIGHT_TIMEOUT, BacklightTimeoutValue);
+            int BacklightTimeoutIndex = mBacklightTimeout
+                    .findIndexOfValue(BacklightTimeout);
+            mBacklightTimeout
+                    .setSummary(mBacklightTimeout.getEntries()[BacklightTimeoutIndex]);
+            return true;
+        } else if (preference == mButtonBrightness) {
+            int value = (Integer) newValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.BUTTON_BRIGHTNESS, value * 1);
+            return true;
+        } else if (preference == mButtonBrightness_sw) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.BUTTON_BRIGHTNESS, value ? 1 : 0);
             return true;
         } else if (preference == mHwKeyDisable) {
             boolean value = (Boolean) newValue;
