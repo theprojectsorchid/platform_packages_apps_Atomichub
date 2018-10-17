@@ -36,6 +36,7 @@ import android.provider.SearchIndexableResource;
 import java.util.ArrayList;
 import java.util.*;
 import com.palladium.support.colorpicker.ColorPickerPreference;
+import com.palladium.atomichub.display.QsTileStylePreferenceController;
 import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.development.OverlayCategoryPreferenceController;
 import com.android.settingslib.core.AbstractPreferenceController;
@@ -102,6 +103,7 @@ public class frag_theme extends DashboardFragment implements OnPreferenceChangeL
                 "android.theme.customization.adaptive_icon_shape"));
         controllers.add(new OverlayCategoryPreferenceController(context,
                 "android.theme.customization.icon_pack.android"));
+        controllers.add(new QsTileStylePreferenceController(context));
         return controllers;
     }
 
