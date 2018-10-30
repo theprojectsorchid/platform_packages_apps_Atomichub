@@ -185,6 +185,12 @@
         android:title="@string/navbar_invert_layout_title"
         android:defaultValue="false" />
 
+    <com.palladium.support.preferences.SystemSettingSwitchPreference
+        android:key="pixel_nav_animation"
+        android:title="@string/pixel_navbar_anim_title"
+        android:summary="@string/pixel_navbar_anim_summary"
+        android:defaultValue="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
