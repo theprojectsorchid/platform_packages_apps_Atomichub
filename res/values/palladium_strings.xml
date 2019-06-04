@@ -1060,6 +1060,11 @@
     <string name="lockscreen_weather_title">Show weather condition</string>
     <string name="lockscreen_weather_summary">Show current weather condition and temperature</string>
 
-
+     <!-- Lockscreen weather style -->
+    <string name="lockscreen_weather_style_title">Weather style</string>
+    <string name="lockscreen_weather_omni_style_title">Omni style</string>
+    <string name="lockscreen_weather_pixel_style_title">Pixel style</string>
+    <string name="lock_screen_weather_style_title">Show weather with Pixel style</string>
+    <string name="lock_screen_weather_style_summary">Instead of using the big widget, it\'ll show next to the date</string>
 </resources>
 
