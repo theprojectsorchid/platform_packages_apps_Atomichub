@@ -110,4 +110,17 @@
         android:summary="%s"
         android:defaultValue="0" />
 
+    <PreferenceCategory
+
+        android:title="@string/battery_saving">
+
+        <Preference
+            android:key="suspend_actions"
+            android:fragment="com.palladium.atomichub.fragments.ScreenStateToggles"
+            android:title="@string/screen_state_toggles_title"
+            android:summary="@string/screen_state_toggles_summary" />
+
+    </PreferenceCategory>
+
+
 </PreferenceScreen>
