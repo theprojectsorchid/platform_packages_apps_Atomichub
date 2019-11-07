@@ -46,5 +46,12 @@
     <string name="default_string">Default</string>
     <string name="reset">Reset</string>
 
+     <!-- Keys -->
+    <string name="power_key">Power</string>
+
+     <!-- Global Actions -->
+    <string name="global_actions_advanced_reboot_title">Enable advanced restart</string>
+    <string name="global_actions_advanced_reboot_summary">Show options for recovery and bootloader in power menu</string>
+
 </resources>
 
