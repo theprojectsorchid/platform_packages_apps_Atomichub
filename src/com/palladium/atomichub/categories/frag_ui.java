@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
+import androidx.preference.*;
 import android.content.om.IOverlayManager;
 import android.content.om.OverlayInfo;
 import com.android.settings.R;
@@ -25,6 +26,9 @@ import java.util.List;
 public class frag_ui extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private IOverlayManager mOverlayService;
+    private static final String FOD_ICON_PICKER_CATEGORY = "fod_icon_picker_category";
+
+     private Preference mFODIconPicker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,11 @@ public class frag_ui extends SettingsPreferenceFragment implements OnPreferenceC
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
         //Feature Additon!
         final PreferenceScreen prefScreen = getPreferenceScreen();
+        mFODIconPicker = (Preference) findPreference(FOD_ICON_PICKER_CATEGORY);
+        if (mFODIconPicker != null
+                && !getResources().getBoolean(com.android.internal.R.bool.config_supportsInDisplayFingerprint)) {
+            prefScreen.removePreference(mFODIconPicker);
+        }
     }
     @Override
     public int getMetricsCategory() {
