@@ -189,4 +189,8 @@
     <string name="volume_rocker_music_controls_title">Music control</string>
     <string name="volume_rocker_music_controls_summary">Long press volume buttons to switch tracks while screen off</string>
     
+    <!-- RGB Accent Picker -->
+    <string name="accent_color">Accent picker</string>
+    <string name="accent_summary">System wide accent picker</string>
+
 </resources>
