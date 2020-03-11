@@ -3,6 +3,11 @@ package com.palladium.atomichub.categories;
 import android.content.ContentResolver;
 import android.os.Bundle;
 import android.content.Context;
+import android.content.ContentResolver;
+import android.content.SharedPreferences;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
@@ -48,6 +53,10 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
         mOverlayService = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
         //Feature Additon!
+        final PreferenceScreen prefScreen = getPreferenceScreen();
+        final PackageManager mPm = getActivity().getPackageManager();
+        ContentResolver resolver = getActivity().getContentResolver();
+        
         mScrollingCachePref = (ListPreference) findPreference(SCROLLINGCACHE_PREF);
         mScrollingCachePref.setValue(SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP,
                 SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP, SCROLLINGCACHE_DEFAULT)));
@@ -67,12 +76,17 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
 
         mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
         mFingerprintVib = (SwitchPreference) findPreference(FINGERPRINT_VIB);
-        if (!mFingerprintManager.isHardwareDetected()){
-            prefScreen.removePreference(mFingerprintVib);
+        if (mPm.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT) &&
+                 mFingerprintManager != null) {
+            if (!mFingerprintManager.isHardwareDetected()){
+                prefScreen.removePreference(mFingerprintVib);
+            } else {
+                mFingerprintVib.setChecked((Settings.System.getInt(getContentResolver(),
+                        Settings.System.FINGERPRINT_SUCCESS_VIB, 1) == 1));
+                mFingerprintVib.setOnPreferenceChangeListener(this);
+            }
         } else {
-            mFingerprintVib.setChecked((Settings.System.getInt(getContentResolver(),
-                    Settings.System.FINGERPRINT_SUCCESS_VIB, 1) == 1));
-            mFingerprintVib.setOnPreferenceChangeListener(this);
+            prefScreen.removePreference(mFingerprintVib);
         }
 
     }
