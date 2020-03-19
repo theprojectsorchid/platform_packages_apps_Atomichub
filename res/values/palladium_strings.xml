@@ -55,6 +55,7 @@
     <string name="powermenu_title">Power Menu</string>
     <string name="gesture">Gesture Settings</string>
     <string name="default_string">Default</string>
+    <string name="reset">Reset</string>
 
 
     <!-- QS Themes Category -->
@@ -634,5 +635,17 @@
     <string name="qs_brightness_slider_hide">Hide</string>
     <string name="qs_brightness_slider_bottom">Bottom</string>
     <string name="qs_brightness_slider_top">Top</string>
+
+    <!-- Theme Reset Option -->
+    <string name="theme_option_reset_title">Reset</string>
+    <string name="theme_option_reset_message">Are you sure you want to reset?</string>
+
+    <!-- General strings -->
+    <string name="unit_percent">\u0025</string>
+    <string name="enabled">Enabled</string>
+    <string name="choose_app">Choose application</string>
+    <string name="help">Help</string>
+    <string name="reset_message">Reset all entries to default?</string>
+    <string name="attention">Attention</string>
 
 </resources>
