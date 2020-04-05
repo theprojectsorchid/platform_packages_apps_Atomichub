@@ -14,6 +14,13 @@
             android:summary="@string/show_cpu_info_summary" 
             android:defaultValue="false" />
 
+        <!-- Battery light -->
+        <SwitchPreference
+            android:key="battery_light_enabled"
+            android:title="@string/battery_light_title"
+            android:summary="@string/battery_light_summary"
+            settings:controller="com.palladium.atomichub.controllers.BatteryLightPreferenceController"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

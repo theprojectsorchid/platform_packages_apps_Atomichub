@@ -66,5 +66,9 @@
     <!-- UI debug setting: show cpu usage summary [CHAR LIMIT=50] -->
     <string name="show_cpu_info_summary">Screen overlay showing current CPU info</string> 
 
+    <!-- Battery light -->
+    <string name="battery_light_title">Battery light</string>
+    <string name="battery_light_summary">Turn on the light while charging and blink when battery is low</string>
+
 </resources>
 
