@@ -25,7 +25,9 @@ import android.os.ServiceManager;
 import android.app.ActionBar;
 import com.palladium.atomichub.*;
 
+import com.palladium.support.preferences.SecureSettingMasterSwitchPreference;
 import com.palladium.support.preferences.SecureSettingSwitchPreference;
+import com.palladium.support.preferences.SystemSettingMasterSwitchPreference;
 
 public class frag_statusbar extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
@@ -42,11 +44,13 @@ public class frag_statusbar extends SettingsPreferenceFragment implements OnPref
     private static final int BATTERY_PERCENT_HIDDEN = 0;
     //private static final int BATTERY_PERCENT_SHOW_INSIDE = 1;
     //private static final int BATTERY_PERCENT_SHOW_OUTSIDE = 2;
+    private static final String KEY_NETWORK_TRAFFIC = "network_traffic_state";
 
     private ListPreference mBatteryPercent;
     private ListPreference mBatteryStyle;
     private int mBatteryPercentValue;
     private SecureSettingSwitchPreference mCombinedIcons;
+    private SystemSettingMasterSwitchPreference mNetworkTraffic;
     // private int mBatteryPercentValuePrev;
 
     @Override
@@ -96,6 +100,13 @@ public class frag_statusbar extends SettingsPreferenceFragment implements OnPref
                 COBINED_STATUSBAR_ICONS, def ? 1 : 0) == 1;
         mCombinedIcons.setChecked(enabled);
         mCombinedIcons.setOnPreferenceChangeListener(this);
+
+        mNetworkTraffic = (SystemSettingMasterSwitchPreference)
+                findPreference(KEY_NETWORK_TRAFFIC);
+        enabled = Settings.System.getIntForUser(resolver,
+                KEY_NETWORK_TRAFFIC, 0, UserHandle.USER_CURRENT) == 1;
+        mNetworkTraffic.setChecked(enabled);
+        mNetworkTraffic.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -140,6 +151,11 @@ public class frag_statusbar extends SettingsPreferenceFragment implements OnPref
             Settings.Secure.putInt(resolver,
                     COBINED_STATUSBAR_ICONS, enabled ? 1 : 0);
             return true;
+	    } else if (preference == mNetworkTraffic) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putIntForUser(resolver, KEY_NETWORK_TRAFFIC,
+                    value ? 1 : 0, UserHandle.USER_CURRENT);
+                    return true;
         }
         return false;
     }
