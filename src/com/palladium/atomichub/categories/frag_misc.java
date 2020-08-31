@@ -13,6 +13,7 @@ import com.android.settings.SettingsPreferenceFragment;
 import android.provider.Settings;
 import android.os.SystemProperties;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import com.palladium.support.preferences.SystemSettingSwitchPreference;
 import com.android.settings.Utils;
 import android.os.ServiceManager;
 import com.palladium.atomichub.*;
@@ -22,6 +23,7 @@ import com.android.settingslib.search.SearchIndexable;
 import android.provider.SearchIndexableResource;
 import java.util.ArrayList;
 import java.util.List;
+import com.android.internal.widget.LockPatternUtils;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 
@@ -31,7 +33,9 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
     private static final String SCROLLINGCACHE_PREF = "pref_scrollingcache";
     private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
     private static final String SCROLLINGCACHE_DEFAULT = "2";
+    private static final String FP_KEYSTORE = "fp_unlock_keystore";
 
+    private SystemSettingSwitchPreference mFingerprintUnlock;
     private ListPreference mScrollingCachePref;
 
     @Override
@@ -45,6 +49,18 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
         mScrollingCachePref.setValue(SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP,
                 SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP, SCROLLINGCACHE_DEFAULT)));
         mScrollingCachePref.setOnPreferenceChangeListener(this);
+
+        mFingerprintUnlock = (SystemSettingSwitchPreference) findPreference(FP_KEYSTORE);
+
+        if (mFingerprintUnlock != null) {
+           if (LockPatternUtils.isDeviceEncryptionEnabled()) {
+               mFingerprintUnlock.setEnabled(false);
+               mFingerprintUnlock.setSummary(R.string.fp_encrypt_warning);
+            } else {
+               mFingerprintUnlock.setEnabled(true);
+               mFingerprintUnlock.setSummary(R.string.fp_unlock_keystore_summary);
+            }
+        }
 
     }
     @Override
