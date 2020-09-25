@@ -52,6 +52,7 @@
     <string name="Team_summary">Spend time in knowing people behind this project !</string>
     <string name="button">Buttons</string>
     <string name="team">Team</string>
+    <string name="powermenu_title">Power Menu</string>
 
     <!-- Lock screen info category -->
     <string name="lock_screen_info_category_title">Lock screen</string>
@@ -151,5 +152,20 @@
     <!-- Lockscreen shortcuts -->
     <string name="lockscreen_tuner_title">Lockscreen shortcuts</string>
     <string name="lockscreen_tuner_summary">Modify the shortcuts shown in the lockscreen</string>
+
+    <!-- Global Actions -->
+    <string name="global_actions_advanced_reboot_title">Enable advanced restart</string>
+    <string name="global_actions_advanced_reboot_summary">When restarting also show options for recovery and bootloader</string>
+    <string name="global_actions_airplane">Airplane</string>
+    <string name="global_actions_settings">Settings</string>
+    <string name="global_actions_lockdown">Lock Down</string>
+    <!--<string name="global_actions_soundpanel">Sound Panel</string>-->
+    <string name="global_actions_users">Users</string>
+    <string name="global_actions_screenshot">Screenshot</string>
+    <string name="global_actions_screenrecord">Screenrecord</string>
+    <string name="global_actions_flashlight">Flashlight</string>
+    <string name="global_actions_emergency">Emergency</string>
+    <string name="global_actions_max_columns_title">Max actions to show</string>
+    <string name="global_actions_max_columns_summary">Set how many actions to show before buttons move to overflow menu</string>
 
 </resources>
