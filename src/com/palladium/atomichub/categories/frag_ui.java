@@ -25,6 +25,9 @@ import java.util.List;
 public class frag_ui extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private IOverlayManager mOverlayService;
+    private static final String KEY_TORCH_LONG_PRESS_POWER_TIMEOUT = "torch_long_press_power_timeout";
+
+    private ListPreference mTorchLongPressPowerTimeout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,14 @@ public class frag_ui extends SettingsPreferenceFragment implements OnPreferenceC
         mOverlayService = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
         //Feature Additon!
+        final PreferenceScreen prefScreen = getPreferenceScreen();
+
+        mTorchLongPressPowerTimeout = findPreference(KEY_TORCH_LONG_PRESS_POWER_TIMEOUT);
+        mTorchLongPressPowerTimeout.setOnPreferenceChangeListener(this);
+        int TorchTimeout = Settings.System.getInt(getContentResolver(),
+                Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, 0);
+        mTorchLongPressPowerTimeout.setValue(Integer.toString(TorchTimeout));
+        mTorchLongPressPowerTimeout.setSummary(mTorchLongPressPowerTimeout.getEntry());    
 
     }
     @Override
@@ -54,7 +65,19 @@ public class frag_ui extends SettingsPreferenceFragment implements OnPreferenceC
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final String key = preference.getKey();
-        return true;
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mTorchLongPressPowerTimeout) {
+            String TorchTimeout = (String) newValue;
+            int TorchTimeoutValue = Integer.parseInt(TorchTimeout);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, TorchTimeoutValue);
+            int TorchTimeoutIndex = mTorchLongPressPowerTimeout
+                    .findIndexOfValue(TorchTimeout);
+            mTorchLongPressPowerTimeout
+                    .setSummary(mTorchLongPressPowerTimeout.getEntries()[TorchTimeoutIndex]);
+            return true;
+        }
+        return false;
     }
 
     /**
