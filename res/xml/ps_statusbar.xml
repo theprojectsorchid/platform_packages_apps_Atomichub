@@ -18,6 +18,14 @@
             android:summary="@string/battery_percent_summary"
             android:fragment="com.palladium.atomichub.fragments.StatusbarBatterySettings"/>
 
+        <!--Network traffic -->
+        <Preference 
+            android:key="network_traffic"
+            android:fragment="com.palladium.atomichub.fragments.NetworkTraffic"
+            android:title="@string/traffic_title"
+            android:summary="@string/traffic_summary" />
+
+
         <com.palladium.support.preferences.SystemSettingSwitchPreference 
             android:key="show_fourg"
             android:title="@string/show_fourg_title"
