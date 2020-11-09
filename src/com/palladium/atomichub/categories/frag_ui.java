@@ -29,13 +29,16 @@ import com.palladium.atomichub.*;
 
 import com.palladium.support.preferences.SecureSettingMasterSwitchPreference;
 import com.palladium.support.preferences.SecureSettingSwitchPreference;
+import com.palladium.support.preferences.SystemSettingMasterSwitchPreference;
 
 public class frag_ui extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private IOverlayManager mOverlayService;
     private static final String BRIGHTNESS_SLIDER = "qs_show_brightness";
+    private static final String KEY_EDGE_LIGHTNING = "pulse_ambient_light";
 
     private SecureSettingMasterSwitchPreference mBrightnessSlider;
+    private SystemSettingMasterSwitchPreference mEdgeLightning;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,14 @@ public class frag_ui extends SettingsPreferenceFragment implements OnPreferenceC
         enabled = Settings.Secure.getInt(resolver,
                 BRIGHTNESS_SLIDER, 1) == 1;
         mBrightnessSlider.setChecked(enabled);
+
+
+        mEdgeLightning = (SystemSettingMasterSwitchPreference)
+                findPreference(KEY_EDGE_LIGHTNING);
+        enabled = Settings.System.getIntForUser(resolver,
+                KEY_EDGE_LIGHTNING, 0, UserHandle.USER_CURRENT) == 1;
+        mEdgeLightning.setChecked(enabled);
+        mEdgeLightning.setOnPreferenceChangeListener(this);
     }
     @Override
     public int getMetricsCategory() {
@@ -75,6 +86,11 @@ public class frag_ui extends SettingsPreferenceFragment implements OnPreferenceC
             Boolean value = (Boolean) newValue;
             Settings.Secure.putInt(resolver,
                     BRIGHTNESS_SLIDER, value ? 1 : 0);
+            return true;
+        } else if (preference == mEdgeLightning) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putIntForUser(resolver, KEY_EDGE_LIGHTNING,
+                    value ? 1 : 0, UserHandle.USER_CURRENT);
             return true;
         }
         return false;
