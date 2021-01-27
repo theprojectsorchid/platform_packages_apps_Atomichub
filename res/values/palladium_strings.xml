@@ -61,6 +61,10 @@
     <!-- QS Themes Category -->
     <string name="qs_themes_category_title">QS themes</string>
 
+    <!-- QS Tint -->
+    <string name="qs_bg_use_new_tint">New tint style</string>
+    <string name="qs_bg_use_new_tint_summary">Enable the new QS tint style</string>
+
     <!-- Lock screen info category -->
     <string name="lock_screen_info_category_title">Lock screen</string>
 
