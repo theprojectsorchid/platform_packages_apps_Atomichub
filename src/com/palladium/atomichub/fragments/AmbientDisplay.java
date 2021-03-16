@@ -53,11 +53,11 @@ import androidx.preference.SwitchPreference;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
-import com.palladium.atomichub.preference.CustomSeekBarPreference;
-import com.palladium.atomichub.preference.SystemSettingSeekBarPreference;
-import com.palladium.atomichub.preference.CustomSeekBarPreference;
-import com.palladium.atomichub.preference.*;
+import com.palladium.support.colorpicker.ColorPickerPreference;
+import com.palladium.support.preferences.CustomSeekBarPreference;
+import com.palladium.support.preferences.SystemSettingSeekBarPreference;
+import com.palladium.support.preferences.CustomSeekBarPreference;
+import com.palladium.support.preferences.*;
 
 import com.android.internal.logging.nano.MetricsProto;
 
@@ -82,6 +82,13 @@ public class AmbientDisplay extends SettingsPreferenceFragment
     private static final String KEY_DOZE_BRIGHTNESS = "ambient_doze_brightness";
     private static final String KEY_AMBIENT = "ambient_notification_light_enabled";
     private static final String AOD_SCHEDULE_KEY = "always_on_display_schedule";
+
+    static final int MODE_DISABLED = 0;
+    static final int MODE_NIGHT = 1;
+    static final int MODE_TIME = 2;
+    static final int MODE_MIXED_SUNSET = 3;
+    static final int MODE_MIXED_SUNRISE = 4;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -179,14 +186,21 @@ public class AmbientDisplay extends SettingsPreferenceFragment
         int mode = Settings.Secure.getIntForUser(getActivity().getContentResolver(),
                 Settings.Secure.DOZE_ALWAYS_ON_AUTO_MODE, 0, UserHandle.USER_CURRENT);
         switch (mode) {
-            case 0:
+            default:
+            case MODE_DISABLED:
                 mAODPref.setSummary(R.string.disabled);
                 break;
-            case 1:
+            case MODE_NIGHT:
                 mAODPref.setSummary(R.string.night_display_auto_mode_twilight);
                 break;
-            case 2:
+            case MODE_TIME:
                 mAODPref.setSummary(R.string.night_display_auto_mode_custom);
+                break;
+            case MODE_MIXED_SUNSET:
+                mAODPref.setSummary(R.string.always_on_display_schedule_mixed_sunset);
+                break;
+            case MODE_MIXED_SUNRISE:
+                mAODPref.setSummary(R.string.always_on_display_schedule_mixed_sunrise);
                 break;
         }
     }
