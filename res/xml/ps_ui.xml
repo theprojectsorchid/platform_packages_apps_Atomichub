@@ -60,10 +60,48 @@
             android:title="@string/lockscreen_media_art_title"
             android:summary="@string/lockscreen_media_art_summary"
             android:defaultValue="true" />
+
+        <com.palladium.atomichub.preference.SystemSettingSeekBarPreference
+            android:key="lockscreen_media_blur"
+            android:title="@string/lockscreen_media_blur_title"
+            android:dependency="lockscreen_media_art"
+            settings:allowEditText="true"
+            android:max="25"
+            android:min="0"
+            android:defaultValue="25"
+            settings:units="dp"/>
     </PreferenceCategory>
 
     <PreferenceCategory
+<<<<<<< HEAD
         android:title="@string/gesture">
+=======
+        android:key="lockscreen_media_art_options"
+        android:title="@string/lockscreen_media_art_options_title" >
+    
+        <com.palladium.atomichub.preference.SystemSettingSwitchPreference
+            android:key="lockscreen_media_art"
+            android:title="@string/lockscreen_media_art_title"
+            android:summary="@string/lockscreen_media_art_summary"
+            android:defaultValue="true" />
+
+        <com.palladium.atomichub.preference.SystemSettingSeekBarPreference
+            android:key="lockscreen_media_blur"
+            android:title="@string/lockscreen_media_blur_title"
+            android:dependency="lockscreen_media_art"
+            settings:allowEditText="true"
+            android:max="25"
+            android:min="0"
+            android:defaultValue="25"
+            settings:units="dp"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="fod_category"
+        android:title="@string/lockscreen_fod_category">
+        
+>>>>>>> e71ef12 (Atomichub: Add lockscreen media artwork options)
         <Preference
             android:key="gesture_settings"
             android:title="@string/aosp_gesture_preference"
