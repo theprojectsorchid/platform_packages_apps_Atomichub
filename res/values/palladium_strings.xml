@@ -678,4 +678,7 @@
     <string name="hide_lockicon_title">Hide lock icon</string>
     <string name="hide_lockicon_summary">Hide the lock icon on lockscreen</string>
 
+    <!-- CustomDoze -->
+    <string name="ambient_display_custom_title">Ambient Display</string>
+
 </resources>
