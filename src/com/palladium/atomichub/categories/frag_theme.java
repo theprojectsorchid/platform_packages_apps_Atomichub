@@ -12,7 +12,9 @@ import android.content.om.IOverlayManager;
 import android.content.om.OverlayInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.UserHandle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.*;
@@ -34,15 +36,28 @@ import android.provider.SearchIndexableResource;
 import java.util.ArrayList;
 import java.util.*;
 import com.palladium.support.colorpicker.ColorPickerPreference;
+import com.android.settings.dashboard.DashboardFragment;
+import com.android.settings.development.OverlayCategoryPreferenceController;
+import com.android.settingslib.core.AbstractPreferenceController;
+import com.android.settingslib.core.lifecycle.Lifecycle;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
-public class frag_theme extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
+public class frag_theme extends DashboardFragment implements OnPreferenceChangeListener {
 
     private static final String ACCENT_COLOR = "accent_color";
     private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
 
     private IOverlayManager mOverlayService;
     private ColorPickerPreference mThemeColor;
+
+    @Override
+    protected String getLogTag() {
+        return "Themes";
+    }
+    @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.ps_theme;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +68,7 @@ public class frag_theme extends SettingsPreferenceFragment implements OnPreferen
         //Feature Additon!
         setupAccentPref();
     }
+
     @Override
     public int getMetricsCategory() {
         return MetricsEvent.PALLADIUM;
@@ -68,6 +84,26 @@ public class frag_theme extends SettingsPreferenceFragment implements OnPreferen
         super.onPause();
     }
 
+
+    @Override
+    protected List<AbstractPreferenceController> createPreferenceControllers(Context context) {
+        return buildPreferenceControllers(context, getSettingsLifecycle(), this);
+    }
+
+    private static List<AbstractPreferenceController> buildPreferenceControllers(
+            Context context, Lifecycle lifecycle, Fragment fragment) {
+
+        final List<AbstractPreferenceController> controllers = new ArrayList<>();
+        controllers.add(new OverlayCategoryPreferenceController(context,
+                "android.theme.customization.accent_color"));
+        controllers.add(new OverlayCategoryPreferenceController(context,
+                "android.theme.customization.font"));
+        controllers.add(new OverlayCategoryPreferenceController(context,
+                "android.theme.customization.adaptive_icon_shape"));
+        controllers.add(new OverlayCategoryPreferenceController(context,
+                "android.theme.customization.icon_pack.android"));
+        return controllers;
+    }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
