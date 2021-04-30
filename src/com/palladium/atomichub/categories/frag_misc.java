@@ -34,9 +34,12 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
     private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
     private static final String SCROLLINGCACHE_DEFAULT = "2";
     private static final String FP_KEYSTORE = "fp_unlock_keystore";
+    private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
 
     private SystemSettingSwitchPreference mFingerprintUnlock;
     private ListPreference mScrollingCachePref;
+    private FingerprintManager mFingerprintManager;
+    private SwitchPreference mFingerprintVib;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,16 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
             }
         }
 
+        mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
+        mFingerprintVib = (SwitchPreference) findPreference(FINGERPRINT_VIB);
+        if (!mFingerprintManager.isHardwareDetected()){
+            prefScreen.removePreference(mFingerprintVib);
+        } else {
+            mFingerprintVib.setChecked((Settings.System.getInt(getContentResolver(),
+                    Settings.System.FINGERPRINT_SUCCESS_VIB, 1) == 1));
+            mFingerprintVib.setOnPreferenceChangeListener(this);
+        }
+
     }
     @Override
     public int getMetricsCategory() {
@@ -82,10 +95,17 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final String key = preference.getKey();
+        ContentResolver resolver = getActivity().getContentResolver();
+        boolean result = false;
         if (preference == mScrollingCachePref) {
             if (newValue != null) {
                 SystemProperties.set(SCROLLINGCACHE_PERSIST_PROP, (String) newValue);
             }
+            return true;
+        } else if (preference == mFingerprintVib) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.FINGERPRINT_SUCCESS_VIB, value ? 1 : 0);
             return true;
         }
         return false;
