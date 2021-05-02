@@ -1,11 +1,15 @@
 package com.palladium.atomichub.categories;
 
-import android.content.ContentResolver;
 import android.os.Bundle;
 import android.content.Context;
+import android.content.ContentResolver;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
+import androidx.preference.*;
 import android.content.om.IOverlayManager;
 import android.content.om.OverlayInfo;
 import com.android.settings.R;
@@ -20,13 +24,18 @@ import com.android.settingslib.search.SearchIndexable;
 import android.provider.SearchIndexableResource;
 import java.util.ArrayList;
 import java.util.List;
+import com.android.internal.util.palladium.PalladiumUtils;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 
 public class frag_statusbar extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private IOverlayManager mOverlayService;
+    private static final String LAYOUT_SETTINGS = "navbar_layout_views";
+    private static final String NAVIGATION_BAR_INVERSE = "navbar_inverse_layout";
 
+    private Preference mLayoutSettings;
+    private SwitchPreference mSwapNavButtons;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +43,14 @@ public class frag_statusbar extends SettingsPreferenceFragment implements OnPref
         mOverlayService = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
         //Feature Additon!
+        final PreferenceScreen prefScreen = getPreferenceScreen();
+        mLayoutSettings = findPreference(LAYOUT_SETTINGS);
+        mSwapNavButtons = findPreference(NAVIGATION_BAR_INVERSE);
 
+        if (!PalladiumUtils.isThemeEnabled("com.android.internal.systemui.navbar.threebutton")) {
+            prefScreen.removePreference(mLayoutSettings);
+        }
+            prefScreen.removePreference(mSwapNavButtons);
     }
     @Override
     public int getMetricsCategory() {
