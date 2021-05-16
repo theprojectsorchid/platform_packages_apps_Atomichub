@@ -45,6 +45,13 @@
             android:fragment="com.android.settings.gestures.GestureSettings"
             settings:controller="com.android.settings.gestures.GesturesSettingPreferenceController"/>
 
+        <Preference
+            android:key="gesture_system_navigation"
+            android:title="@string/system_navigation_title"
+            android:fragment="com.android.settings.gestures.SystemNavigationGestureSettings"
+            settings:controller="com.android.settings.gestures.SystemNavigationPreferenceController" />
+
+
         <com.palladium.support.preferences.SystemSettingSwitchPreference
             android:key="three_finger_gesture"
             android:title="@string/three_finger_gesture"
