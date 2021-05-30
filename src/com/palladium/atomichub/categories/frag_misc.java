@@ -15,6 +15,13 @@ import com.android.settings.Utils;
 import android.os.ServiceManager;
 import com.palladium.atomichub.*;
 import android.app.ActionBar;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
+import android.provider.SearchIndexableResource;
+import java.util.ArrayList;
+import java.util.List;
+
+@SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 
 public class frag_misc extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
@@ -50,4 +57,31 @@ public class frag_misc extends SettingsPreferenceFragment implements OnPreferenc
         final String key = preference.getKey();
         return true;
     }
+
+
+    /**
+     * For Seaech
+     */
+
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.ps_misc;
+                    result.add(sir);
+                    return result;
+                }
+
+           @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    List<String> keys = super.getNonIndexableKeys(context);
+                    return keys;
+                }
+    };
+
 }
