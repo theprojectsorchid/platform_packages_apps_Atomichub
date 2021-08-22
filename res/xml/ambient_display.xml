@@ -48,7 +48,7 @@
         android:key="ambient_gestures"
         android:title="@string/ambient_gestures">
           
-          <com.palladium.atomichub.preference.SecureSettingSwitchPreference
+          <com.palladium.support.preferences.SecureSettingSwitchPreference
                android:key="doze_pulse_on_double_tap"
                android:title="@string/double_tap_on_doze_to_wake_title"
                android:summary="@string/double_tap_on_doze_to_wake_summary"
@@ -60,26 +60,26 @@
         android:key="pulse_ambient_light_category"
         android:title="@string/pulse_ambient_light_category" >
 
-        <com.palladium.atomichub.preference.SystemSettingSwitchPreference
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
             android:key="pulse_ambient_light"
             android:title="@string/pulse_ambient_light_title"
             android:summary="@string/pulse_ambient_light_summary"
             android:defaultValue="false" />
 
-        <com.palladium.atomichub.preference.SystemSettingSwitchPreference
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
             android:key="ambient_notification_light_enabled"
             android:title="@string/ambient_notification_light_enabled_title"
             android:summary="@string/ambient_notification_light_enabled_summary"
             android:defaultValue="false" />
 
-        <com.palladium.atomichub.preference.SystemSettingSwitchPreference
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
             android:key="ambient_notification_light_hide_aod"
             android:title="@string/ambient_notification_light_hide_aod_title"
             android:summary="@string/ambient_notification_light_hide_aod_summary"
             android:defaultValue="false"
             android:dependency="ambient_notification_light_enabled"/>
 
-        <com.palladium.atomichub.preference.SystemSettingListPreference
+        <com.palladium.support.preferences.SystemSettingListPreference
             android:key="ambient_notification_light_timeout"
             android:dialogTitle="@string/ambient_notification_light_timeout_title"
             android:title="@string/ambient_notification_light_timeout_title"
@@ -97,13 +97,13 @@
             android:entryValues="@array/ambient_notification_light_color_mode_values"
             android:defaultValue="2" />
 
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
+        <com.palladium.support.colorpicker.ColorPickerPreference
             android:key="ambient_notification_light_color"
             android:summary="@string/ambient_notification_light_color_summary"
             android:title="@string/ambient_notification_light_color_title"
             settings:defaultColorValue="0xFF3980FF" />
 
-        <com.palladium.atomichub.preference.CustomSeekBarPreference
+        <com.palladium.support.preferences.CustomSeekBarPreference
             android:key="notification_pulse_duration"
             android:title="@string/pulse_ambient_light_duration_title"
             android:summary="@string/pulse_ambient_light_duration_summary"
@@ -115,7 +115,7 @@
             settings:interval="1"
             android:dependency="pulse_ambient_light" />
 
-       <com.palladium.atomichub.preference.SystemSettingSeekBarPreference
+       <com.palladium.support.preferences.SystemSettingSeekBarPreference
             android:key="notification_pulse_repeats"
             android:title="@string/pulse_ambient_light_repeat_count_title"
             android:summary="@string/pulse_ambient_light_repeat_count_summary"
@@ -131,7 +131,7 @@
 
      <PreferenceCategory
         android:title="@string/doze_brightness_category" >
-        <com.palladium.atomichub.preference.CustomSeekBarPreference
+        <com.palladium.support.preferences.CustomSeekBarPreference
             android:key="ambient_doze_brightness"
             android:title="@string/ambient_doze_brightness_title"
             android:summary="@string/ambient_doze_brightness_summary"
@@ -139,7 +139,7 @@
             settings:min="1"
             android:persistent="false" />
 
-        <com.palladium.atomichub.preference.CustomSeekBarPreference
+        <com.palladium.support.preferences.CustomSeekBarPreference
             android:key="ambient_pulse_brightness"
             android:title="@string/ambient_pulse_brightness_title"
             android:summary="@string/ambient_pulse_brightness_summary"

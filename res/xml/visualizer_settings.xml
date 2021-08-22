@@ -15,19 +15,19 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
 	android:title="@string/lockscreen_visualizer_enable">
 
-    <com.palladium.atomichub.preference.SystemSettingSwitchPreference
+    <com.palladium.support.preferences.SystemSettingSwitchPreference
         android:key="lockscreen_visualizer_autocolor"
         android:title="@string/lockscreen_autocolor_title"
         android:summary="@string/lockscreen_autocolor_summary"
         android:defaultValue="true" />
 
-    <com.palladium.atomichub.preference.SystemSettingSwitchPreference
+    <com.palladium.support.preferences.SystemSettingSwitchPreference
         android:key="lockscreen_lavalamp_enabled"
         android:title="@string/lockscreen_lavalamp_title"
         android:summary="@string/lockscreen_lavalamp_summary"
         android:defaultValue="false" />
 
-    <com.palladium.atomichub.preference.SystemSettingSeekBarPreference
+    <com.palladium.support.preferences.SystemSettingSeekBarPreference
         android:key="lockscreen_lavalamp_speed"
         android:title="@string/lockscreen_lavalamp_speed_title"
         android:defaultValue="10000"
@@ -41,7 +41,7 @@
         android:key="lockscreen_solid_lines_category"
         android:title="@string/lockscreen_solid_lines_category" >
 
-        <com.palladium.atomichub.preference.SystemSettingSeekBarPreference
+        <com.palladium.support.preferences.SystemSettingSeekBarPreference
             android:key="lockscreen_solid_units_count"
             android:title="@string/lockscreen_solid_units_count_title"
             android:defaultValue="32"
@@ -49,14 +49,14 @@
             settings:min="16"
             settings:interval="16"/>
 
-        <com.palladium.atomichub.preference.SystemSettingSeekBarPreference
+        <com.palladium.support.preferences.SystemSettingSeekBarPreference
             android:key="lockscreen_solid_fudge_factor"
             android:title="@string/lockscreen_solid_fudge_factor_title"
             android:defaultValue="16"
             android:max="32"
             settings:min="2"/>
 
-        <com.palladium.atomichub.preference.SystemSettingSeekBarPreference
+        <com.palladium.support.preferences.SystemSettingSeekBarPreference
             android:key="lockscreen_solid_units_opacity"
             android:title="@string/lockscreen_solid_units_opacity_title"
             android:defaultValue="140"
