@@ -35,6 +35,13 @@
             android:defaultValue="@string/volume_panel_aosp_val" />
 
         <com.palladium.support.colorpicker.ColorPickerPreference
+            android:key="systemui_color"
+            android:title="@string/sysui_color"
+            android:summary="@string/sysui_summary"
+            android:defaultValue="0xffffff"
+            android:persistent="false" />
+
+        <com.palladium.support.colorpicker.ColorPickerPreference
             android:key="accent_color"
             android:title="@string/accent_color"
             android:summary="@string/accent_summary"

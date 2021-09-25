@@ -61,12 +61,16 @@ public class frag_theme extends DashboardFragment implements OnPreferenceChangeL
 
     private static final String ACCENT_COLOR = "accent_color";
     private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
+    private static final String SYSTEMUI_COLOR = "systemui_color";
+    private static final String SYSTEMUI_COLOR_PROP = "persist.sys.theme.systemuicolor";
+
     private static final int MENU_RESET = Menu.FIRST;
 
     static final int DEFAULT = 0xff1a73e8;
 
     private IOverlayManager mOverlayService;
     private ColorPickerPreference mThemeColor;
+    private ColorPickerPreference mSystemuiColor;
 
     private IntentFilter mIntentFilter;
     private static FontPickerPreferenceController mFontPickerPreference;
@@ -100,6 +104,7 @@ public class frag_theme extends DashboardFragment implements OnPreferenceChangeL
         mIntentFilter.addAction("com.android.server.ACTION_FONT_CHANGED");
 
         setupAccentPref();
+        setupSystemuiPref();
         setHasOptionsMenu(true);
     }
 
@@ -139,8 +144,28 @@ public class frag_theme extends DashboardFragment implements OnPreferenceChangeL
                  mOverlayService.reloadAssets("com.android.systemui", UserHandle.USER_CURRENT);
              } catch (RemoteException ignored) {
              }
+        } else if (preference == mSystemuiColor) {
+            int color = (Integer) newValue;
+            String hexColor = String.format("%08X", (0xFFFFFFFF & color));
+            SystemProperties.set(SYSTEMUI_COLOR_PROP, hexColor);
+            try {
+                 mOverlayService.reloadAndroidAssets(UserHandle.USER_CURRENT);
+                 mOverlayService.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
+                 mOverlayService.reloadAssets("com.android.systemui", UserHandle.USER_CURRENT);
+             } catch (RemoteException ignored) {
+             }
         }
         return true;
+    }
+
+    private void setupSystemuiPref() {
+        mSystemuiColor = (ColorPickerPreference) findPreference(SYSTEMUI_COLOR);
+        String colorVal = SystemProperties.get(SYSTEMUI_COLOR_PROP, "-1");
+        int color = "-1".equals(colorVal)
+                ? Color.WHITE
+                : Color.parseColor("#" + colorVal);
+        mSystemuiColor.setNewPreviewColor(color);
+        mSystemuiColor.setOnPreferenceChangeListener(this);
     }
 
     private void setupAccentPref() {

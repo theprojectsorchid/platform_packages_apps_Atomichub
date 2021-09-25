@@ -981,6 +981,10 @@
     <!-- Pulse on Music Track -->
     <string name="pulse_on_new_tracks_title">Music ticker</string>
     <string name="pulse_on_new_tracks_summary">Show Ambient Display when a new music track is played</string>
-    
+
+    <!-- QS Panel Background picker -->
+    <string name="sysui_color">QS Panel Background picker</string>
+    <string name="sysui_summary">Change the background colour of QS Panel</string>
+
 </resources>
 
