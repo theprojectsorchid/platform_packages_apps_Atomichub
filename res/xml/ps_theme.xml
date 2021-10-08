@@ -53,6 +53,15 @@
             android:summary="@string/headsup_use_transparent_background_summary"
             android:defaultValue="true" />
 
+        <com.palladium.atomichub.preference.SystemSettingSeekBarPreference
+            android:key="sb_bg_alpha"
+            android:title="@string/sb_bg_alpha_title"
+            android:summary="@string/sb_bg_alpha_summary"
+            android:defaultValue="255"
+            android:max="255"
+            android:min="0"
+            settings:units="" />
+
         <com.palladium.support.colorpicker.ColorPickerPreference
             android:key="accent_color"
             android:title="@string/accent_color"

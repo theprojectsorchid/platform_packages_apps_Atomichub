@@ -1079,5 +1079,9 @@
     <string name="headsup_use_transparent_background">Transparent background</string>
     <string name="headsup_use_transparent_background_summary">Use Transparent background for Heads-Up Notification background</string>
 
+    <!-- StatusBar opacity -->
+    <string name="sb_bg_alpha_title">Background opacity</string>
+    <string name="sb_bg_alpha_summary">Adjust opacity of StatusBar background</string>
+
 </resources>
 
