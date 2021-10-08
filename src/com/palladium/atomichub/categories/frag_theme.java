@@ -5,6 +5,7 @@ import static android.os.UserHandle.USER_SYSTEM;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ActivityThread;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.BroadcastReceiver;
@@ -16,6 +17,7 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.om.IOverlayManager;
 import android.content.om.OverlayInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.UserHandle;
@@ -63,6 +65,7 @@ public class frag_theme extends DashboardFragment implements OnPreferenceChangeL
     private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
     private static final String SYSTEMUI_COLOR = "systemui_color";
     private static final String SYSTEMUI_COLOR_PROP = "persist.sys.theme.systemuicolor";
+    private static final String SYSTEMUI_COLOR_PROP_DARK = "persist.sys.theme.systemuicolordark";
 
     private static final int MENU_RESET = Menu.FIRST;
 
@@ -147,20 +150,49 @@ public class frag_theme extends DashboardFragment implements OnPreferenceChangeL
         } else if (preference == mSystemuiColor) {
             int color = (Integer) newValue;
             String hexColor = String.format("%08X", (0xFFFFFFFF & color));
-            SystemProperties.set(SYSTEMUI_COLOR_PROP, hexColor);
+            if(isDark()){
+                SystemProperties.set(SYSTEMUI_COLOR_PROP_DARK, hexColor);
+            }
+            else{
+                SystemProperties.set(SYSTEMUI_COLOR_PROP, hexColor);
+            }
             try {
                  mOverlayService.reloadAndroidAssets(UserHandle.USER_CURRENT);
                  mOverlayService.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
                  mOverlayService.reloadAssets("com.android.systemui", UserHandle.USER_CURRENT);
-             } catch (RemoteException ignored) {
-             }
-        }
+             } catch (RemoteException ignored) {}
+        } 
         return true;
+    }
+
+    private boolean isDark(){
+        final Context context = ActivityThread.currentApplication();
+        Resources mResources = (Resources) context.getResources();
+        int nightModeFlags =mResources.getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        boolean flg;       
+        switch (nightModeFlags) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                flg=true;
+                break;
+            case Configuration.UI_MODE_NIGHT_NO:
+                flg=false;
+                break;
+            default:
+                flg=false;
+                break;
+        }
+        return flg;
     }
 
     private void setupSystemuiPref() {
         mSystemuiColor = (ColorPickerPreference) findPreference(SYSTEMUI_COLOR);
-        String colorVal = SystemProperties.get(SYSTEMUI_COLOR_PROP, "-1");
+        String colorVal;
+        if(isDark()){
+             colorVal = SystemProperties.get(SYSTEMUI_COLOR_PROP_DARK, "-1");
+        }
+        else{
+            colorVal = SystemProperties.get(SYSTEMUI_COLOR_PROP, "-1");
+        }
         int color = "-1".equals(colorVal)
                 ? Color.WHITE
                 : Color.parseColor("#" + colorVal);
