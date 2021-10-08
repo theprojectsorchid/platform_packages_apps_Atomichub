@@ -1075,5 +1075,9 @@
     <string name="qs_db">Accent Tint</string>
     <string name="qs_db_summary">Use Accent Tint For QS Disabled Color</string>
 
+    <!-- HEADS-UP Background -->
+    <string name="headsup_use_transparent_background">Transparent background</string>
+    <string name="headsup_use_transparent_background_summary">Use Transparent background for Heads-Up Notification background</string>
+
 </resources>
 

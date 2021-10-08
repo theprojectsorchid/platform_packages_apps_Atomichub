@@ -47,6 +47,12 @@
             android:summary="@string/qs_db_summary"
             android:defaultValue="true" />
 
+        <com.palladium.atomichub.preference.SystemSettingSwitchPreference
+            android:key="headsup_use_transparent_background"
+            android:title="@string/headsup_use_transparent_background"
+            android:summary="@string/headsup_use_transparent_background_summary"
+            android:defaultValue="true" />
+
         <com.palladium.support.colorpicker.ColorPickerPreference
             android:key="accent_color"
             android:title="@string/accent_color"
