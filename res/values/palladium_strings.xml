@@ -1083,5 +1083,8 @@
     <string name="sb_bg_alpha_title">Background opacity</string>
     <string name="sb_bg_alpha_summary">Adjust opacity of StatusBar background</string>
 
+    <!-- QQS Count -->
+    <string name="qqs_count_title">Increase the number of icons in QQS</string>
+
 </resources>
 
