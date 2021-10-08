@@ -41,6 +41,12 @@
             android:defaultValue="0xffffff"
             android:persistent="false" />
 
+      <com.palladium.atomichub.preference.SystemSettingSwitchPreference
+            android:key="use_accentbg"
+            android:title="@string/qs_db"
+            android:summary="@string/qs_db_summary"
+            android:defaultValue="true" />
+
         <com.palladium.support.colorpicker.ColorPickerPreference
             android:key="accent_color"
             android:title="@string/accent_color"
