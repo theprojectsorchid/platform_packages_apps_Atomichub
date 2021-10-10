@@ -1087,5 +1087,9 @@
     <!-- QQS Count -->
     <string name="qqs_count_title">Increase the number of icons in QQS</string>
 
+    <!-- Make Corners rounded-->
+    <string name="roundedc">Rounded Corners</string>
+    <string name="roundedc_summary">Use Rounded Corners in Notification Shade</string>
+
 </resources>
 

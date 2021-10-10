@@ -33,6 +33,12 @@
             android:summary="@string/headsup_use_transparent_background_summary"
             android:defaultValue="true" />
 
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
+            android:key="make_round"
+            android:title="@string/roundedc"
+            android:summary="@string/roundedc_summary"
+            android:defaultValue="true" />
+
         <com.palladium.support.preferences.SystemSettingSeekBarPreference
             android:key="sb_bg_alpha"
             android:title="@string/sb_bg_alpha_title"
