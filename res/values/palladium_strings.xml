@@ -966,6 +966,10 @@
     <string name="sysui_color">QS Panel Background picker</string>
     <string name="sysui_summary">Change the background colour of QS Panel</string>
 
+    <!-- Notification Background Picker -->
+    <string name="notification_new">Notification Background picker</string>
+    <string name="notification_new_summary">Change the background colour of Notification Dialog</string>
+
     <string name="gaming_title">Gaming mode</string>
     <string name="gaming_title_summary">Extra features for immersive gaming experience</string>
 
