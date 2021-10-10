@@ -63,6 +63,7 @@ public class frag_theme extends DashboardFragment implements OnPreferenceChangeL
 
     private static final String ACCENT_COLOR = "accent_color";
     private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
+    private static final String ACCENT_COLOR_PROP_DARK = "persist.sys.theme.accentcolordark";
     private static final String SYSTEMUI_COLOR = "systemui_color";
     private static final String SYSTEMUI_COLOR_PROP = "persist.sys.theme.systemuicolor";
     private static final String SYSTEMUI_COLOR_PROP_DARK = "persist.sys.theme.systemuicolordark";
@@ -140,7 +141,12 @@ public class frag_theme extends DashboardFragment implements OnPreferenceChangeL
         if (preference == mThemeColor) {
             int color = (Integer) newValue;
             String hexColor = String.format("%08X", (0xFFFFFFFF & color));
-            SystemProperties.set(ACCENT_COLOR_PROP, hexColor);
+            if(isDark()){
+                SystemProperties.set(ACCENT_COLOR_PROP_DARK, hexColor);
+            }
+            else{
+                SystemProperties.set(ACCENT_COLOR_PROP, hexColor);
+            }
             try {
                  mOverlayService.reloadAndroidAssets(UserHandle.USER_CURRENT);
                  mOverlayService.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
@@ -202,7 +208,13 @@ public class frag_theme extends DashboardFragment implements OnPreferenceChangeL
 
     private void setupAccentPref() {
         mThemeColor = (ColorPickerPreference) findPreference(ACCENT_COLOR);
-        String colorVal = SystemProperties.get(ACCENT_COLOR_PROP, "-1");
+        String colorVal;
+        if(isDark()){
+             colorVal = SystemProperties.get(ACCENT_COLOR_PROP_DARK, "-1");
+        }
+        else{
+            colorVal = SystemProperties.get(ACCENT_COLOR_PROP, "-1");
+        }
         int color = "-1".equals(colorVal)
                 ? DEFAULT
                 : Color.parseColor("#" + colorVal);
