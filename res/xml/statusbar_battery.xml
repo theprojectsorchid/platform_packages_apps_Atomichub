@@ -39,7 +39,6 @@
         android:defaultValue="0" />
 
    <com.palladium.support.preferences.SystemSettingSwitchPreference
-        settings:iconSpaceReserved="false"
         android:key="do_left_battery_text"
         android:title="@string/left_battery_text_title"
         android:summary="@string/left_battery_text_summary"
