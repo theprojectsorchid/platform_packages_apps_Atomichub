@@ -64,7 +64,7 @@ public class Teamlayout2 extends LinearLayout {
         lj1.setOrientation(HORIZONTAL);
         lj1.setWeightSum(3);
         ImageView pot = new ImageView(c);
-        Drawable potd = getResources().getDrawable(R.mipmap.ic_yash);
+        Drawable potd = getResources().getDrawable(R.mipmap.ic_ankitha);
         pot.setImageDrawable(potd);
         LayoutParams ppot = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
@@ -72,7 +72,7 @@ public class Teamlayout2 extends LinearLayout {
         pot.setPadding(50,50,50,50);
         lj1.addView(pot);
         ImageView tj = new ImageView(c);
-        Drawable d = getResources().getDrawable(R.drawable.ic_yash_head);
+        Drawable d = getResources().getDrawable(R.drawable.ic_ankitha);
         tj.setImageDrawable(d);
         LinearLayout.LayoutParams ptj = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
@@ -106,7 +106,7 @@ public class Teamlayout2 extends LinearLayout {
         ghj.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://github.com/yashdevelops";
+                String url = "https://github.com/AnkithaKrishnamoorthy";
                 Intent Getintent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 c.startActivity(Getintent);
             }
@@ -115,7 +115,7 @@ public class Teamlayout2 extends LinearLayout {
         tmj.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://t.me/dedasfuck";
+                String url = "https://t.me/Kulo_7";
                 Intent Getintent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 c.startActivity(Getintent);
             }
