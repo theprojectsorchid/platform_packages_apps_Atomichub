@@ -16,14 +16,14 @@ import android.os.ServiceManager;
 import android.app.ActionBar;
 import com.palladium.atomichub.*;
 
-public class frag_misc extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
+public class frag_lock extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private IOverlayManager mOverlayService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.ps_misc);
+        addPreferencesFromResource(R.xml.ps_lock);
         mOverlayService = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
         //Feature Additon!
