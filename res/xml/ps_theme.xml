@@ -2,4 +2,18 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/themes" >
+
+    <PreferenceCategory
+        android:key="misc_general"
+        android:title="@string/general" >
+
+        <!-- Monet -->
+        <Preference
+            android:key="monet_settings"
+            android:title="@string/monet_engine_settings_title"
+            android:summary="@string/monet_engine_settings_summary"
+            android:fragment="com.palladium.atomichub.fragments.MonetSettings" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
