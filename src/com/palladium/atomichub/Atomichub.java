@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
-import com.google.android.material.card.MaterialCardView;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
@@ -27,7 +27,7 @@ import com.palladium.atomichub.categories.frag_statusbar;
 
 public class Atomichub extends SettingsPreferenceFragment implements  View.OnClickListener{
 
-    MaterialCardView mctheme, mcui, mcmisc, mclock, mcstatus, mclogo;
+    CardView mctheme, mcui, mcmisc, mclock, mcstatus, mclogo;
     ImageView ivui, ivtheme, ivstatus, ivmisc, ivlock, ivlogo;
 
 
