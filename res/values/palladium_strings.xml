@@ -53,6 +53,12 @@
     <string name="power_key">Power</string>
     <string name="volume_key">Volume</string>
 
+    <!-- General category -->
+    <string name="general_category">General</string>
+
+    <!-- Status bar items -->
+    <string name="statusbar_items_category">Status bar items</string>
+    
      <!-- Global Actions -->
     <string name="global_actions_advanced_reboot_title">Enable advanced restart</string>
     <string name="global_actions_advanced_reboot_summary">Show options for recovery and bootloader in power menu</string>
