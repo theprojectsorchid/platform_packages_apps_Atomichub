@@ -46,6 +46,9 @@
     <string name="default_string">Default</string>
     <string name="reset">Reset</string>
 
+     <!-- Categories -->
+    <string name="general">General</string>
+
      <!-- Keys -->
     <string name="power_key">Power</string>
     <string name="volume_key">Volume</string>
@@ -54,10 +57,14 @@
     <string name="global_actions_advanced_reboot_title">Enable advanced restart</string>
     <string name="global_actions_advanced_reboot_summary">Show options for recovery and bootloader in power menu</string>
 
-
     <!-- Volume rocker music control -->
     <string name="volume_button_music_control_title">Playback control</string>
     <string name="volume_button_music_control_summary">When the screen is off, long-pressing the volume keys will skip music tracks</string>
+
+    <!-- UI debug setting: show CPU info? [CHAR LIMIT=25] -->
+    <string name="show_cpu_info">Show CPU info</string>
+    <!-- UI debug setting: show cpu usage summary [CHAR LIMIT=50] -->
+    <string name="show_cpu_info_summary">Screen overlay showing current CPU info</string> 
 
 </resources>
 
