@@ -29,6 +29,10 @@ import com.palladium.support.preferences.SecureSettingMasterSwitchPreference;
 import com.palladium.support.preferences.SecureSettingSwitchPreference;
 import com.palladium.support.preferences.SystemSettingMasterSwitchPreference;
 
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
+
+@SearchIndexable
 public class frag_statusbar extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private IOverlayManager mOverlayService;
@@ -159,5 +163,8 @@ public class frag_statusbar extends SettingsPreferenceFragment implements OnPref
         }
         return false;
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.ps_statusbar);
 
 }

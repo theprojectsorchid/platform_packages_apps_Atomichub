@@ -36,7 +36,10 @@ import com.palladium.support.colorpicker.ColorPickerPreference;
 import com.palladium.support.preferences.CustomSeekBarPreference;
 import com.palladium.support.preferences.SystemSettingListPreference;
 import com.palladium.support.preferences.SystemSettingSwitchPreference;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
 
+@SearchIndexable
 public class EdgeLightningSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
@@ -180,4 +183,7 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
             mTimeoutPref.setEnabled(false);
         }
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.edge_lightning_settings);
 }

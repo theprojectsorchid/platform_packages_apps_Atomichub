@@ -33,8 +33,12 @@ import com.palladium.support.preferences.SystemSettingMasterSwitchPreference;
 import com.palladium.support.preferences.SystemSettingSeekBarPreference;
 import com.palladium.support.preferences.SystemSettingSwitchPreference;
 
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
+
 import com.android.internal.util.palladium.PalladiumUtils;
 
+@SearchIndexable
 public class frag_ui extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private IOverlayManager mOverlayService;
@@ -99,4 +103,7 @@ public class frag_ui extends SettingsPreferenceFragment implements OnPreferenceC
         }
         return false;
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.ps_ui);
 }

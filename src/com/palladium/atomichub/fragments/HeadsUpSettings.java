@@ -49,6 +49,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
+
+@SearchIndexable
 public class HeadsUpSettings extends SettingsPreferenceFragment
         implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
 
@@ -409,4 +413,7 @@ public class HeadsUpSettings extends SettingsPreferenceFragment
         Settings.System.putString(getContentResolver(),
                 setting, value);
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.heads_up_settings);
 }

@@ -16,6 +16,10 @@ import android.os.ServiceManager;
 import android.app.ActionBar;
 import com.palladium.atomichub.*;
 
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
+
+@SearchIndexable
 public class frag_theme extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private IOverlayManager mOverlayService;
@@ -50,4 +54,7 @@ public class frag_theme extends SettingsPreferenceFragment implements OnPreferen
         final String key = preference.getKey();
         return true;
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.ps_theme);
 }
