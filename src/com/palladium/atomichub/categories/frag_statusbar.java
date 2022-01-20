@@ -2,6 +2,7 @@ package com.palladium.atomichub.categories;
 
 import android.content.Context;
 import android.content.ContentResolver;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -24,11 +25,16 @@ import android.os.ServiceManager;
 import android.app.ActionBar;
 import com.palladium.atomichub.*;
 
+import com.palladium.support.preferences.SecureSettingSwitchPreference;
+
 public class frag_statusbar extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private IOverlayManager mOverlayService;
+    private static final String SYSTEMUI_PACKAGE = "com.android.systemui";
+    private static final String CONFIG_RESOURCE_NAME = "flag_combined_status_bar_signal_icons";
     private static final String PREF_STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String PREF_STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
+    private static final String COBINED_STATUSBAR_ICONS = "show_combined_status_bar_signal_icons";
 
     private static final int BATTERY_STYLE_PORTRAIT = 0;
     private static final int BATTERY_STYLE_TEXT = 4;
@@ -40,12 +46,15 @@ public class frag_statusbar extends SettingsPreferenceFragment implements OnPref
     private ListPreference mBatteryPercent;
     private ListPreference mBatteryStyle;
     private int mBatteryPercentValue;
+    private SecureSettingSwitchPreference mCombinedIcons;
     // private int mBatteryPercentValuePrev;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.ps_statusbar);
+        PreferenceScreen prefSet = getPreferenceScreen();
+        final ContentResolver resolver = getActivity().getContentResolver();
         mOverlayService = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
         //Feature Additon!
@@ -67,6 +76,26 @@ public class frag_statusbar extends SettingsPreferenceFragment implements OnPref
         mBatteryPercent.setEnabled(
                 batterystyle != BATTERY_STYLE_TEXT && batterystyle != BATTERY_STYLE_HIDDEN);
 
+        mCombinedIcons = (SecureSettingSwitchPreference)
+                findPreference(COBINED_STATUSBAR_ICONS);
+        Resources sysUIRes = null;
+        boolean def = false;
+        int resId = 0;
+        try {
+            sysUIRes = getActivity().getPackageManager()
+                    .getResourcesForApplication(SYSTEMUI_PACKAGE);
+        } catch (Exception ignored) {
+            // If you don't have system UI you have bigger issues
+        }
+        if (sysUIRes != null) {
+            resId = sysUIRes.getIdentifier(
+                    CONFIG_RESOURCE_NAME, "bool", SYSTEMUI_PACKAGE);
+            if (resId != 0) def = sysUIRes.getBoolean(resId);
+        }
+        boolean enabled = Settings.Secure.getInt(resolver,
+                COBINED_STATUSBAR_ICONS, def ? 1 : 0) == 1;
+        mCombinedIcons.setChecked(enabled);
+        mCombinedIcons.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -105,6 +134,11 @@ public class frag_statusbar extends SettingsPreferenceFragment implements OnPref
                     UserHandle.USER_CURRENT);
             int index = mBatteryPercent.findIndexOfValue((String) newValue);
             mBatteryPercent.setSummary(mBatteryPercent.getEntries()[index]);
+            return true;
+        } else if (preference == mCombinedIcons) {
+            boolean enabled = (boolean) newValue;
+            Settings.Secure.putInt(resolver,
+                    COBINED_STATUSBAR_ICONS, enabled ? 1 : 0);
             return true;
         }
         return false;
