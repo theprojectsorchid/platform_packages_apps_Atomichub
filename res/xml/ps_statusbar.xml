@@ -15,6 +15,12 @@
             android:defaultValue="false" />
 
         <Preference
+            android:key="heads_up_notifications"
+            android:summary="@string/heads_up_notifications_summary"
+            android:title="@string/heads_up_notifications"
+            android:fragment="com.palladium.atomichub.fragments.HeadsUpSettings"/>
+
+        <Preference
             android:key="systemui_tuner_statusbar"
             android:title="@string/statusbar_items_category">
             <intent android:action="android.intent.action.MAIN"
