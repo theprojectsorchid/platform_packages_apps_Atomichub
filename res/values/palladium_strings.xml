@@ -50,6 +50,7 @@
     <string name="signal_category">Signal Indicator</string>
     <string name="quicksettings_category_title">Quick Settings Customizations</string>
     <string name="ambientsettings_category_title">Ambient Settings Customizations</string>
+    <string name="ls_category_title">Lockscreen Category</string>
 
      <!-- Keys -->
     <string name="power_key">Power</string>
@@ -270,5 +271,9 @@
     <string name="heads_up_snooze_10min">10 minutes</string>
     <string name="heads_up_snooze_15min">15 minutes</string>
     <string name="heads_up_snooze_20min">20 minutes</string>
+
+    <!-- Lockscreen battery info indicator  -->
+    <string name="lockscreen_battery_info_title">Lockscreen charging info</string>
+    <string name="lockscreen_battery_info_summary">Display negociated charger max current and voltage and battery temperature on lockscreen while charging</string>
 </resources>
 
