@@ -6,7 +6,13 @@
 
     <PreferenceCategory
         android:key="statusbar_general_category"
-        android:title="@string/general_category" />
+        android:title="@string/general_category" >
+
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
+            android:key="show_fourg_icon"
+            android:title="@string/show_fourg_icon_title"
+            android:summary="@string/show_fourg_icon_summary"
+            android:defaultValue="false"/>
 
         <Preference
             android:key="systemui_tuner_statusbar"
@@ -15,5 +21,7 @@
                 android:targetPackage="com.android.systemui"
                 android:targetClass="com.android.systemui.tuner.StatusbarItemsActivity" />
         </Preference>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

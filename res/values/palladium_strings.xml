@@ -95,5 +95,10 @@
     <string name="chroma_factor_title">Colorfulness</string>
     <string name="linear_lightness_title">Use a custom lightness scale</string>
     <string name="white_luminance_title">Brightness</string>
+
+    <!-- 4G icon -->
+    <string name="show_fourg_icon_title">4G icon</string>
+    <string name="show_fourg_icon_summary">Display 4G icon in signal icon instead LTE</string>
+    
 </resources>
 
