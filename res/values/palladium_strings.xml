@@ -76,9 +76,11 @@
     <string name="show_cpu_info_summary">Screen overlay showing current CPU info</string> 
 
     <!-- Battery light -->
-    <string name="battery_light_title">Battery light</string>
-    <string name="battery_light_summary">Turn on the light while charging and blink when battery is low</string>
-
+    <string name="charging_battery_light_title">Charging battery light</string>
+    <string name="charging_battery_light_summary">Turn on light while charging battery</string>
+    <string name="low_battery_light_title">Low battery light</string>
+    <string name="low_battery_light_summary">Blink light when battery is low</string>
+    
     <!-- Torch Power button gestures -->
     <string name="torch_power_button_gesture_title">Toggle torch when screen off</string>
     <string name="torch_power_button_gesture_none">Disabled</string>
