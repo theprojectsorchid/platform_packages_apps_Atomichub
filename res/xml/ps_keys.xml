@@ -15,6 +15,15 @@
             android:summary="@string/global_actions_advanced_reboot_summary"
             android:defaultValue="true" />
 
+        <com.palladium.support.preferences.SystemSettingListPreference
+            android:key="torch_power_button_gesture"
+            android:dialogTitle="@string/torch_power_button_gesture_title"
+            android:title="@string/torch_power_button_gesture_title"
+            android:summary="%s"
+            android:entries="@array/torch_power_button_gesture_entries"
+            android:entryValues="@array/torch_power_button_gesture_values"
+            android:defaultValue="0" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
