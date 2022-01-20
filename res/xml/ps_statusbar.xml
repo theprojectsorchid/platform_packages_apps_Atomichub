@@ -14,6 +14,12 @@
             android:summary="@string/show_fourg_icon_summary"
             android:defaultValue="false"/>
 
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
+            android:key="use_old_mobiletype"
+            android:title="@string/use_old_mobiletype_title"
+            android:summary="@string/use_old_mobiletype_summary"
+            android:defaultValue="true" />
+
         <Preference
             android:key="systemui_tuner_statusbar"
             android:title="@string/statusbar_items_category">
