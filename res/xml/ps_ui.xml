@@ -13,6 +13,13 @@
             android:summary="@string/lockscreen_battery_info_summary"
             android:defaultValue="true" />
 
+        <!-- Always available -->
+        <com.palladium.support.preferences.SecureSettingSwitchPreference
+            android:key="qstile_requires_unlocking"
+            android:title="@string/qstile_requires_unlocking_title"
+            android:summary="@string/qstile_requires_unlocking_summary"
+            android:defaultValue="true"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -67,7 +74,7 @@
     <PreferenceCategory
         android:key="quicksettings_category"
         android:title="@string/quicksettings_category_title">
-        
+
         <!-- Media player in QS -->
         <com.palladium.support.preferences.GlobalSettingSwitchPreference
             android:key="qs_media_controls"
