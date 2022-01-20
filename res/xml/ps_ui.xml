@@ -13,6 +13,12 @@
             android:summary="@string/lockscreen_battery_info_summary"
             android:defaultValue="true" />
 
+        <com.palladium.support.preferences.SecureSettingSwitchPreference
+            android:key="secure_lockscreen_qs_disabled"
+            android:title="@string/disable_qs_title"
+            android:summary="@string/disable_qs_summary"
+            android:defaultValue="false" />
+
         <!-- Always available -->
         <com.palladium.support.preferences.SecureSettingSwitchPreference
             android:key="qstile_requires_unlocking"
