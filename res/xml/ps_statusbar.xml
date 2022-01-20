@@ -8,6 +8,20 @@
         android:key="statusbar_general_category"
         android:title="@string/general_category" >
 
+        <Preference
+            android:key="systemui_tuner_statusbar"
+            android:title="@string/statusbar_items_category">
+            <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.systemui"
+                android:targetClass="com.android.systemui.tuner.StatusbarItemsActivity" />
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="statusbar_signal_category"
+        android:title="@string/signal_category">
+
         <com.palladium.support.preferences.SystemSettingSwitchPreference
             android:key="show_fourg_icon"
             android:title="@string/show_fourg_icon_title"
@@ -20,13 +34,11 @@
             android:summary="@string/use_old_mobiletype_summary"
             android:defaultValue="true" />
 
-        <Preference
-            android:key="systemui_tuner_statusbar"
-            android:title="@string/statusbar_items_category">
-            <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="com.android.systemui"
-                android:targetClass="com.android.systemui.tuner.StatusbarItemsActivity" />
-        </Preference>
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
+            android:key="roaming_indicator_icon"
+            android:title="@string/roaming_indicator_icon_title"
+            android:summary="@string/roaming_indicator_icon_summary"
+            android:defaultValue="true"/>
 
     </PreferenceCategory>
 
