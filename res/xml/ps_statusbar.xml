@@ -8,6 +8,12 @@
         android:key="statusbar_general_category"
         android:title="@string/general_category" >
 
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
+            android:key="less_boring_heads_up"
+            android:title="@string/less_boring_heads_up_title"
+            android:summary="@string/less_boring_heads_up_summary"
+            android:defaultValue="false" />
+
         <Preference
             android:key="systemui_tuner_statusbar"
             android:title="@string/statusbar_items_category">
