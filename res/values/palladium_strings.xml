@@ -113,6 +113,10 @@
     <string name="battery_style_category_title">Battery Customizations</string>
     <string name="battery_percent_title">Battery percent</string>
 
+    <!-- QS battery estimates -->
+    <string name="qs_show_battery_estimate_title">Battery estimates</string>
+    <string name="qs_show_battery_estimate_summary">Show estimated remaining battery life next to the icon</string>
+
     <!-- Status bar - Battery -->
     <string name="status_bar_battery_style_title">Battery style</string>
     <string name="status_bar_battery_style_icon_portrait">Icon portrait (default)</string>
