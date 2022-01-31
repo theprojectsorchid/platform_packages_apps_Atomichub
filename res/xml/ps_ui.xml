@@ -21,6 +21,12 @@
             android:summary="@string/pulse_ambient_light_summary"
             android:fragment="com.palladium.atomichub.fragments.EdgeLightningSettings"
             android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="lockscreen_media_art_options"
+        android:title="@string/lockscreen_media_art_category_title"
+        android:order="1002">
 
         <com.palladium.support.preferences.SystemSettingSwitchPreference
             android:key="keygaurd_media_art"
@@ -28,6 +34,15 @@
             android:summary="@string/keygaurd_media_art_summary"
             android:defaultValue="false" />
 
+        <com.palladium.support.preferences.CustomSystemSeekBarPreference
+            android:key="lockscreen_media_blur"
+            android:title="@string/lockscreen_media_blur_title"
+            android:dependency="keygaurd_media_art"
+            settings:allowEditText="true"
+            android:max="25"
+            android:min="0"
+            android:defaultValue="25"
+            settings:units="dp"/>
     </PreferenceCategory>
 
     <PreferenceCategory
