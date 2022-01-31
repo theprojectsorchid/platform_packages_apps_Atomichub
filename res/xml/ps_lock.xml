@@ -3,4 +3,86 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/lock">
+
+    <PreferenceCategory
+        android:key="ls_category"
+        android:title="@string/ls_category_title">
+
+
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
+            android:key="lockscreen_small_clock"
+            android:title="@string/lockscreen_small_clock_title"
+            android:summary="@string/lockscreen_small_clock_summary"
+            android:defaultValue="false" />
+
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
+            android:key="lockscreen_battery_info"
+            android:title="@string/lockscreen_battery_info_title"
+            android:summary="@string/lockscreen_battery_info_summary"
+            android:defaultValue="true" />
+
+        <com.palladium.support.preferences.SecureSettingSwitchPreference
+            android:key="secure_lockscreen_qs_disabled"
+            android:title="@string/disable_qs_title"
+            android:summary="@string/disable_qs_summary"
+            android:defaultValue="false" />
+
+        <!-- Always available -->
+        <com.palladium.support.preferences.SecureSettingSwitchPreference
+            android:key="qstile_requires_unlocking"
+            android:title="@string/qstile_requires_unlocking_title"
+            android:summary="@string/qstile_requires_unlocking_summary"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="ambientsettings_category"
+        android:title="@string/ambientsettings_category_title">
+
+        <!-- AOD on charge -->
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
+            android:key="doze_on_charge"
+            android:defaultValue="false"
+            android:title="@string/doze_on_charge_title"
+            android:summary="@string/doze_on_charge_summary" />
+
+        <!-- Pulse notifications lightning -->
+        <com.palladium.support.preferences.SystemSettingMasterSwitchPreference
+            android:key="pulse_ambient_light"
+            android:title="@string/pulse_ambient_light_title"
+            android:summary="@string/pulse_ambient_light_summary"
+            android:fragment="com.palladium.atomichub.fragments.EdgeLightningSettings"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="lockscreen_media_art_options"
+        android:title="@string/lockscreen_media_art_category_title"
+        android:order="1002">
+
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
+            android:key="keygaurd_media_art"
+            android:title="@string/keygaurd_media_art_title"
+            android:summary="@string/keygaurd_media_art_summary"
+            android:defaultValue="false" />
+
+        <com.palladium.support.preferences.CustomSystemSeekBarPreference
+            android:key="lockscreen_media_blur"
+            android:title="@string/lockscreen_media_blur_title"
+            android:dependency="keygaurd_media_art"
+            settings:allowEditText="true"
+            android:max="25"
+            android:min="0"
+            android:defaultValue="25"
+            settings:units="dp"/>
+
+        <Preference
+            android:key="lockscreen_visualizer"
+            android:fragment="com.palladium.atomichub.fragments.Visualizer"
+            android:title="@string/lockscreen_visualizer_enable"
+            android:summary="@string/lockscreen_visualizer_enable_summary" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
