@@ -54,4 +54,10 @@ public class LowBatteryLightPreferenceController extends TogglePreferenceControl
                 isChecked ? 1 : 0);
     }
 
+    @Override
+    public int getSliceHighlightMenuRes() {
+        // not needed since it's not sliceable
+        return NO_RES;
+    }
+
 }
