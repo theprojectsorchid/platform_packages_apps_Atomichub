@@ -7,13 +7,6 @@
         android:key="misc_general"
         android:title="@string/general" >
 
-        <!-- Monet -->
-        <Preference
-            android:key="monet_settings"
-            android:title="@string/monet_engine_settings_title"
-            android:summary="@string/monet_engine_settings_summary"
-            android:fragment="com.palladium.atomichub.fragments.MonetSettings" />
-
         <com.palladium.support.preferences.SecureSettingSwitchPreference
             android:key="use_monet"
             android:title="@string/use_monet"
