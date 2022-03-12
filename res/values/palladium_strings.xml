@@ -313,5 +313,9 @@
     <string name="powermenu_logout">Logout</string>
     <string name="powermenu_emergency">Emergency</string>
     <string name="powermenu_torch">Flashlight</string>
+
+    <!-- Combined signal icons in status bar -->
+    <string name="use_monet">Use Monet</string>
+    <string name="use_monet_summary">Enable Monet (Wallpaper based theming). Needs SystemUI restart or reboot</string>
 </resources>
 

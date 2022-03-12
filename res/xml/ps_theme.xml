@@ -14,6 +14,13 @@
             android:summary="@string/monet_engine_settings_summary"
             android:fragment="com.palladium.atomichub.fragments.MonetSettings" />
 
+        <com.palladium.support.preferences.SecureSettingSwitchPreference
+            android:key="use_monet"
+            android:title="@string/use_monet"
+            android:summary="@string/use_monet_summary"
+            android:defaultValue="true" />
+
+
     </PreferenceCategory>
 
 </PreferenceScreen>
