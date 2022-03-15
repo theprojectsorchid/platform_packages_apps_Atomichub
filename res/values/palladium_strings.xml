@@ -206,6 +206,8 @@
     <string name="pulse_ambient_light_layout_title">Edge light view</string>
     <string name="pulse_ambient_light_layout_solid">Solid</string>
     <string name="pulse_ambient_light_layout_faded">Faded</string>
+    <string name="pulse_ambient_light_show_always_title">Show always</string>
+    <string name="pulse_ambient_light_show_always_summary">Show lights for all doze events and not just notifications</string>
 
     <!-- Lockscreen media art and visualizer -->
     <string name="lockscreen_media_art_category_title">Media art &amp; Visualizer</string>
