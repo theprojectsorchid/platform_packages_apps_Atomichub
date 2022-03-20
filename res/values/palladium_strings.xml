@@ -319,5 +319,9 @@
     <!-- Combined signal icons in status bar -->
     <string name="use_monet">Use Monet</string>
     <string name="use_monet_summary">Enable Monet (Wallpaper based theming). Needs SystemUI restart or reboot</string>
+
+    <!-- Power menu on lockscreen -->
+    <string name="lockscreen_power_menu_disabled_title">Disable power menu on lock screen</string>
+    <string name="lockscreen_power_menu_disabled_summary">This will only disable the power menu on secure lock screens</string>
 </resources>
 

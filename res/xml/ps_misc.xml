@@ -54,6 +54,12 @@
             android:fragment="com.palladium.atomichub.fragments.PowerMenuSettings"
             android:title="@string/power_menu_title" />
 
+        <com.palladium.support.preferences.SystemSettingSwitchPreference
+        android:key="lockscreen_power_menu_disabled"
+        android:title="@string/lockscreen_power_menu_disabled_title"
+        android:summary="@string/lockscreen_power_menu_disabled_summary"
+        android:defaultValue="true" />
+
         <com.palladium.support.preferences.SystemSettingListPreference
             android:key="torch_power_button_gesture"
             android:dialogTitle="@string/torch_power_button_gesture_title"
