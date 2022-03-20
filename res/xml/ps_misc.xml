@@ -14,6 +14,12 @@
             android:summary="@string/show_cpu_info_summary" 
             android:defaultValue="false" />
 
+        <com.palladium.support.preferences.GlobalSettingSwitchPreference
+        android:key="wake_when_plugged_or_unplugged"
+        android:title="@string/wakeup_when_plugged_unplugged_title"
+        android:summary="@string/wakeup_when_plugged_unplugged_summary"
+        android:defaultValue="true" />
+
         <com.palladium.support.preferences.SystemSettingSwitchPreference
             android:key="back_gesture_haptic"
             android:title="@string/back_gesture_haptic_title"
