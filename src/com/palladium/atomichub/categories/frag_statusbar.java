@@ -31,7 +31,7 @@ public class frag_statusbar extends SettingsPreferenceFragment implements OnPref
     }
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.PALLADIUM;
+        return MetricsEvent.CUSTOM_SETTINGS;
     }
 
     @Override

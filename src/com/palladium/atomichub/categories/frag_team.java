@@ -31,7 +31,7 @@ public class frag_team extends SettingsPreferenceFragment implements OnPreferenc
     }
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.PALLADIUM;
+        return MetricsEvent.CUSTOM_SETTINGS;
     }
 
     @Override
