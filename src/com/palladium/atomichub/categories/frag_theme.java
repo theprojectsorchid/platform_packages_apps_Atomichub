@@ -23,7 +23,7 @@ public class frag_theme extends SettingsPreferenceFragment implements OnPreferen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.CUSTOM_SETTINGS);
+        addPreferencesFromResource(R.xml.ps_theme);
         mOverlayService = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
         //Feature Additon!
@@ -31,7 +31,7 @@ public class frag_theme extends SettingsPreferenceFragment implements OnPreferen
     }
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.PALLADIUM;
+        return MetricsEvent.CUSTOM_SETTINGS;
     }
 
     @Override
